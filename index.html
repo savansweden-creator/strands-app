@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Strands Control</title>
+
+<!--
+  ============================================================
+  STRANDS CONTROL — APP STORE REDIRECT PAGE
+  ============================================================
+
+  Host this at a short URL, for example:
+      https://strandseurope.com/app
+
+  A short URL makes a simpler QR code, which scans more
+  reliably from a distance and prints smaller.
+
+  TWO THINGS TO FILL IN BELOW (search for FILL IN):
+    1. PLAY_STORE_URL
+    2. APP_STORE_URL
+
+  How it works:
+    - iPhone or iPad  -> App Store
+    - Android         -> Google Play
+    - Desktop or anything else -> shows the page below
+                                  with both links
+  ============================================================
+-->
+
+<script>
+(function () {
+
+  /* ---------- FILL IN ---------- */
+
+  var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=se.strands.control";
+
+  var APP_STORE_URL  = "https://apps.apple.com/app/idAPPLE_APP_ID_HERE";
+
+  /* ------------------------------ */
+
+  var ua = navigator.userAgent || navigator.vendor || window.opera || "";
+
+  // iPadOS 13+ reports itself as a Mac, so check for touch as well
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  var isAndroid = /android/i.test(ua);
+
+  // replace() rather than href so the back button does not loop
+  if (isIOS && APP_STORE_URL.indexOf("APPLE_APP_ID_HERE") === -1) {
+    window.location.replace(APP_STORE_URL);
+  } else if (isAndroid) {
+    window.location.replace(PLAY_STORE_URL);
+  }
+
+  // anything else falls through to the page below
+})();
+</script>
+
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #5a5f66;
+    --rule: #e2e5e9;
+    --accent: #d6001c;
+    --panel: #ffffff;
+    --bg: #f4f4f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #eceff2;
+      --ink-soft: #a4acb5;
+      --rule: #2d3339;
+      --accent: #ff4d63;
+      --panel: #1c2024;
+      --bg: #14171a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #eceff2;
+    --ink-soft: #a4acb5;
+    --rule: #2d3339;
+    --accent: #ff4d63;
+    --panel: #1c2024;
+    --bg: #14171a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+  }
+  .logo em { color: var(--accent); font-style: normal; }
+
+  h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin-bottom: .6rem;
+  }
+
+  p.sub {
+    color: var(--ink-soft);
+    font-size: .95rem;
+    margin-bottom: 1.75rem;
+  }
+
+  a.store {
+    display: block;
+    padding: .9rem 1rem;
+    margin-bottom: .75rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: .95rem;
+    font-weight: 600;
+    transition: border-color .15s, background .15s;
+  }
+  a.store:hover {
+    border-color: var(--accent);
+  }
+  a.store span {
+    display: block;
+    font-weight: 400;
+    font-size: .8rem;
+    color: var(--ink-soft);
+    margin-top: .15rem;
+  }
+
+  p.note {
+    margin-top: 1.5rem;
+    font-size: .82rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 420px) {
+    .card { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="card">
+
+    <div class="logo">Strands<em>.</em></div>
+
+    <h1>Strands Control</h1>
+    <p class="sub">Control your Strands PXP vehicle lighting over Bluetooth.</p>
+
+    <a class="store" href="https://play.google.com/store/apps/details?id=se.strands.control">
+      Download for Android
+      <span>Google Play</span>
+    </a>
+
+    <a class="store" href="https://apps.apple.com/app/idAPPLE_APP_ID_HERE">
+      Download for iPhone
+      <span>App Store</span>
+    </a>
+
+    <p class="note">Requires a Strands PXP Force Box installed in your vehicle.</p>
+
+  </div>
+
+  <noscript>
+    <p style="text-align:center;margin-top:1rem;font-size:.85rem;">
+      Choose your platform above.
+    </p>
+  </noscript>
+</body>
+</html>
